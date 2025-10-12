@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.5.0
+
+- Bump to wyoming 1.8.0 (minor version)
+- Bump to zeroconf 0.148.0 (minor version)
+- Pin to pyring-buffer 1.0.2 (patch version)
+- Bump to pysilero-vad 2.1.1 (major version)
+- Bump to webrtc-noise-gain 1.2.5 (patch version)
+- Pin to gpiozero 2.0.1
+- Pin to spidev 3.8
+
 ## 1.4.1
 
 - Send `played` event to server
