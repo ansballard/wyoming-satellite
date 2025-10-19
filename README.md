@@ -62,6 +62,17 @@ Use `aplay -D <DEVICE> ...` if you need to use a different playback device (list
 
 Add `--debug` to print additional logs.
 
+For local development with pulseaudio, here's an example of the above config using `paplay` and `parecord`
+
+``` sh
+cd wyoming-satellite/
+./script/run \
+  --name 'my satellite' \
+  --uri 'tcp://0.0.0.0:10700' \
+  --mic-command 'parecord --property=media.role=phone --rate=16000 --channels=1 --format=s16le --raw --latency-msec 10' \
+  --snd-command 'paplay --property=media.role=announce --rate=22000 --channels=1 --format=s16le --raw --latency-msec 10'
+```
+
 In the [Home Assistant](https://www.home-assistant.io/) settings "Devices & services" page, you should see the satellite discovered automatically. If not, click "Add Integration", choose "Wyoming Protocol", and enter the IP address of the satellite (port 10700).
 
 Audio will be continuously streamed to the server, where wake word detection, etc. will occur.

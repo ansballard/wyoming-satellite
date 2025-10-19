@@ -7,7 +7,7 @@ import sys
 from functools import partial
 from pathlib import Path
 
-from wyoming.info import Attribution, Info, Satellite
+from wyoming.info import Attribution, Info, Satellite, SndProgram, MicProgram, AudioFormat
 from wyoming.server import AsyncServer, AsyncTcpServer
 
 from . import __version__
@@ -350,7 +350,31 @@ async def main() -> None:
             attribution=Attribution(name="", url=""),
             installed=True,
             version=__version__,
-        )
+        ),
+        snd=[SndProgram(
+            name=args.name,
+            attribution=Attribution(name="", url=""),
+            installed=True,
+            description=args.name,
+            version=__version__,
+            snd_format=AudioFormat(
+                rate=args.snd_command_rate,
+                width=args.snd_command_width,
+                channels=args.snd_command_channels,
+            ),
+        )],
+        mic=[MicProgram(
+            name=args.name,
+            attribution=Attribution(name="", url=""),
+            installed=True,
+            description=args.name,
+            version=__version__,
+            mic_format=AudioFormat(
+                rate=args.mic_command_rate,
+                width=args.mic_command_width,
+                channels=args.mic_command_channels,
+            ),
+        )],
     )
 
     settings = SatelliteSettings(
@@ -448,17 +472,18 @@ async def main() -> None:
     server = AsyncServer.from_uri(args.uri)
 
     if (not args.no_zeroconf) and isinstance(server, AsyncTcpServer):
-        from wyoming.zeroconf import register_server
+        from wyoming.zeroconf import HomeAssistantZeroconf
 
         if not args.zeroconf_name:
             args.zeroconf_name = get_mac_address()
 
         tcp_server: AsyncTcpServer = server
-        await register_server(
+        ha_zeroconf_service = HomeAssistantZeroconf(
             name=args.zeroconf_name,
             port=tcp_server.port,
             host=args.zeroconf_host,
         )
+        await ha_zeroconf_service.register_server()
         _LOGGER.debug(
             "Zeroconf discovery enabled (name=%s, host=%s)",
             args.zeroconf_name,
