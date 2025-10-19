@@ -350,6 +350,7 @@ async def main() -> None:
             attribution=Attribution(name="", url=""),
             installed=True,
             version=__version__,
+            has_vad=args.vad,
         ),
         snd=[SndProgram(
             name=args.name,
