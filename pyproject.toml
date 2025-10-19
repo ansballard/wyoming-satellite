@@ -25,14 +25,14 @@ classifiers = [
 requires-python = ">=3.9.0"
 dependencies = [
     "wyoming==1.8.0",
-    "zeroconf==0.88.0",
+    "zeroconf==0.148.0",
     "pyring-buffer>=1,<2",
 ]
 
 [project.optional-dependencies]
-all = ["pysilero-vad==1.0.0", "webrtc-noise-gain==1.2.3"]
-silerovad = ["pysilero-vad==1.0.0"]
-webrtc = ["webrtc-noise-gain==1.2.3"]
+all = ["pysilero-vad==2.1.1", "webrtc-noise-gain==1.2.5"]
+silerovad = ["pysilero-vad==2.1.1"]
+webrtc = ["webrtc-noise-gain==1.2.5"]
 respeaker = ["gpiozero", "spidev"]
 dev = [
     "black==22.12.0",

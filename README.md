@@ -86,7 +86,7 @@ Rather than always streaming audio to Home Assistant, the satellite can wait unt
 Install the dependencies for silero VAD:
 
 ``` sh
-.venv/bin/pip3 install 'pysilero-vad==1.0.0'
+.venv/bin/pip3 install 'pysilero-vad==2.1.1'
 ```
 
 Run the satellite with VAD enabled:
@@ -158,7 +158,7 @@ The timer finished sound can be repeated with `--timer-finished-wav-repeat <repe
 Install the dependencies for webrtc:
 
 ``` sh
-.venv/bin/pip3 install 'webrtc-noise-gain==1.2.3'
+.venv/bin/pip3 install 'webrtc-noise-gain==1.2.5'
 ```
 
 Run the satellite with automatic gain control and noise suppression:
